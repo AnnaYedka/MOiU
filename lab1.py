@@ -7,10 +7,12 @@ def inverse_matrix(n, i):
 	A = np.random.randint(0, 20, size=(n, n))
 	x = np.random.randint(0, 20, size=(n,))
 
-	print("A = ", A)
-	print("x = ", x)
+	print("A = \n", A)
+	print("x = \n", x)
+
 
 	inv_A = np.linalg.inv(A)
+
 	l = inv_A @ x
 
 	if not l[i]:
@@ -32,6 +34,9 @@ def inverse_matrix(n, i):
 			else:
 				res_inv[j][k] = Q[j][i] * inv_A[i][k] + Q[j][j] * inv_A[j][k]
 
-	print("inversed matrix O(n3): ", Q @ inv_A)
+	print("inversed matrix O(n3): \n", Q @ inv_A)
 
-	print("inversed matrix O(n2): ", res_inv)
+	print("inversed matrix O(n2): \n", res_inv)
+
+
+inverse_matrix(3, 1)
