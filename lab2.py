@@ -1,59 +1,64 @@
 import numpy as np
 
+import lab1
+
 
 def simplex_method(A, c, b, x, B):
 	# step 1
 	AB = A[:, B]
 	AB_inv = np.linalg.inv(AB)
 
-	# step 2
-	cB = c[B]
+	while True:
 
-	# step 3
-	u = cB @ AB_inv
+		# step 2
+		cB = c[B]
 
-	# step 4
-	delta = u @ A - c
+		# step 3
+		u = cB @ AB_inv
 
-	# step 5
-	if np.all(delta >= 0):
-		print('x = ', x)
-		print('B = ', B)
-		return x, B
+		# step 4
+		delta = u @ A - c
 
-	# step 6
-	j0 = np.where(delta < 0)[0][0]
+		# step 5
+		if np.all(delta >= 0):
+			print('x = ', x)
+			print('B = ', B)
+			return x, B
 
-	# step 7
-	z = AB_inv @ A[:, j0]
+		# step 6
+		j0 = np.where(delta < 0)[0][0]
 
-	# step 8
-	m = len(B)
-	theta = np.array([x[B[i]] / z[i] if z[i] > 0 else np.inf for i in range(m)])
+		# step 7
+		z = AB_inv @ A[:, j0]
 
-	# step 9
-	theta0 = min(theta)
+		# step 8
+		m = len(B)
+		theta = np.array([x[B[i]] / z[i] if z[i] > 0 else np.inf for i in range(m)])
 
-	# step 10
-	if theta0 == np.inf:
-		print('целевой функционал задачи не ограничен сверху на множестве допустимых планов')
-		return
+		# step 9
+		theta0 = min(theta)
 
-	# step 11
-	k = np.where(theta == theta0)[0][0]
-	j_star = B[k]
+		# step 10
+		if theta0 == np.inf:
+			print('целевой функционал задачи не ограничен сверху на множестве допустимых планов')
+			return
 
-	# step 12
-	B[k] = j0
+		# step 11
+		k = np.where(theta == theta0)[0][0]
+		j_star = B[k]
 
-	# step 13
-	for i in range(m):
-		if i != k:
-			x[B[i]] -= theta0 * z[i]
-	x[j_star] = 0
-	x[j0] = theta0
+		# step 12
+		B[k] = j0
 
-	return simplex_method(A, c, b, x, B)
+		# step 13
+		for i in range(m):
+			if i != k:
+				x[B[i]] -= theta0 * z[i]
+		x[j_star] = 0
+		x[j0] = theta0
+
+		replace_column = A[:, j0]
+		AB_inv = lab1.inverse_matrix(AB_inv, replace_column, len(replace_column), k)
 
 
 if __name__ == '__main__':

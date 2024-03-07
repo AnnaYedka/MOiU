@@ -1,17 +1,13 @@
 import numpy as np
 
-def inverse_matrix(n, i):
+def inverse_matrix(A, x, n, i):
+
 	if not n or i >=n:
 		raise Exception('invalid arguments')
 
-	A = np.random.randint(0, 20, size=(n, n))
-	x = np.random.randint(0, 20, size=(n,))
 
-	print("A = \n", A)
-	print("x = \n", x)
-
-
-	inv_A = np.linalg.inv(A)
+	#inv_A = np.linalg.inv(A)
+	inv_A = A
 
 	l = inv_A @ x
 
@@ -34,9 +30,8 @@ def inverse_matrix(n, i):
 			else:
 				res_inv[j][k] = Q[j][i] * inv_A[i][k] + Q[j][j] * inv_A[j][k]
 
-	print("inversed matrix O(n3): \n", Q @ inv_A)
-
-	print("inversed matrix O(n2): \n", res_inv)
+	return res_inv
 
 
-inverse_matrix(3, 1)
+if __name__ == '__main__':
+	pass
