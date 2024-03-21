@@ -21,8 +21,8 @@ def simplex_method(A, c, b, x, B):
 
 		# step 5
 		if np.all(delta >= 0):
-			print('x = ', x)
-			print('B = ', B)
+			# print('x = ', x)
+			# print('B = ', B)
 			return x, B
 
 		# step 6
