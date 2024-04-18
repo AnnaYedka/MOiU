@@ -1,6 +1,7 @@
 import numpy as np
 from collections import Counter
 
+
 def matrix_transport_task(a, b, C):
 	# find first basis
 	m, n = np.shape(C)
@@ -97,17 +98,6 @@ def matrix_transport_task(a, b, C):
 
 		for i, j in minus:
 			X[i][j] -= theta
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
