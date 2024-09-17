@@ -1,6 +1,5 @@
 import numpy as np
-
-import lab1
+from .lab1 import inverse_matrix
 
 
 def dual_simplex_method(c, A, b, B):
@@ -51,7 +50,7 @@ def dual_simplex_method(c, A, b, B):
 		B[k_indx] = j_0
 
 		replace_column = A[:, j_0]
-		AB_inv = lab1.inverse_matrix(AB_inv, replace_column, len(replace_column), k_indx)
+		AB_inv = inverse_matrix(AB_inv, replace_column, len(replace_column), k_indx)
 
 
 if __name__ == "__main__":
