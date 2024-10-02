@@ -1,6 +1,6 @@
 import numpy as np
 
-import lab1
+from sem1 import lab1
 
 
 def simplex_method(A, c, b, x, B):

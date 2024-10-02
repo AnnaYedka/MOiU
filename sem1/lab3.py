@@ -1,5 +1,5 @@
 import numpy as np
-import lab2
+from sem1.lab2 import simplex_method
 
 def simplex_method_init(c, A, b):
 	m = len(A)
@@ -17,7 +17,7 @@ def simplex_method_init(c, A, b):
 	B = np.array([i for i in range(n, m+n)])
 
 	# step 4
-	x_help, B = lab2.simplex_method(A_help, c_help, b, x_help, B)
+	x_help, B = simplex_method(A_help, c_help, b, x_help, B)
 
 	# step 5
 	if np.any(x_help[n:m+n] != 0):
