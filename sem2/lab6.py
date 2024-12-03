@@ -30,6 +30,9 @@ def find_max_matching(G, V_1, V_2):
             add_to_graph(graph, u, v)
         else:
             add_to_graph(graph, v, u)
+    for u in V_1:
+        if not graph.get(u):
+            graph[u] = []
 
     # step 2
     graph.update({'s': V_1.copy()})
@@ -47,7 +50,7 @@ def find_max_matching(G, V_1, V_2):
                 for v in graph.get(u):
                     if v in V_1:
                         M.append((v, u))
-            return M
+            return M, graph
 
         # step 5
         graph[path[0]].remove(path[1])
@@ -63,4 +66,4 @@ if __name__ == '__main__':
     V_1 = ['a', 'b', 'c']
     V_2 = ['x', 'y', 'z']
     G = [('a', 'x'), ('b', 'x'), ('b', 'y'), ('c', 'x'), ('c', 'y'), ('c', 'z')]
-    print(find_max_matching(G, V_1, V_2))
+    print(find_max_matching(G, V_1, V_2)[0])
